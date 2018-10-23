@@ -27,7 +27,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class            instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",           NULL,       NULL,       0,            1,           -1 },
+	//{ "Gimp",           NULL,       NULL,       0,            1,           -1 },
+	{ "Riot",           NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "discord",        NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "Signal",         NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "Thunderbird",    NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Firefox",        NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Keepassx",       "keepassx", NULL,       1 << 8,       0,           -1 },
@@ -59,12 +62,16 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *slock[]  = { "slock", NULL };
 static const char *termcmd[]  = { "terminology", NULL };
 static const char *bluemancmd[]  = { "blueman-manager", NULL };
+static const char *nautilus[]  = { "nautilus", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = slock } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = nautilus } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = bluemancmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
